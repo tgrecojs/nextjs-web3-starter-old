@@ -1,0 +1,40 @@
+[
+  {
+    "type": "text",
+    "label": "First Name",
+    "required": true,
+    "placeholder": "first name",
+    "defaultValue": "x",
+    "readOnly": false,
+    "name": "fname"
+  },
+  {
+    "type": "list",
+    "lookupId": "id",
+    "lookupDisplay": "name",
+    "lookupUrl": "http://localhost:8080/cities",
+    "defaultValue": 2,
+    "readOnly": false,
+    "required": true,
+    "label": "City",
+    "name": "city",
+    "placeholder": "city"
+  },
+  {
+    "type": "text",
+    "label": "Last Name",
+    "required": true,
+    "placeholder": "last name",
+    "defaultValue": "x",
+    "readOnly": false,
+    "name": "lname"
+  },
+  {
+    "label": "Country",
+    "required": true,
+    "placeholder": "Country",
+    "defaultValue": "x",
+    "readOnly": false,
+    "name": "country"
+  }
+]
