@@ -58,34 +58,40 @@ const {
       ...rest,
       score: score + payload
     }),
-    startGame: state => ({ ...state, isStarted: true }),
     shuffleCards: state => {
       console.log('shuffling cards!_________', state);
       const deck = shuffle(createDeck());
       return {
-        ...initial,
+        ...state,
+        isStarted: true,
         deck: deck.slice(1),
         currentCard: deck[0],
         pastGames: state.pastGames
       };
     },
-    endGame: ({ deck, id, startTime, score, currentCard, pastGames }) => ({
-      ...initial,
-      pastGames: pastGames.concat({
-        id,
-        player: getUserState().userId,
-        startTime,
-        endTime: getDate,
-        score: score + currentCard.score,
-        cardsRemaining: deck.length
-      })
-    }),
-    dealCard: (state, { score }) => ({
-      ...state,
-      lastCard: state.currentCard,
-      currentCard: state.deck[0],
-      score: add(state.score)(state.currentCard.score),
-      deck: state.deck.slice(1)
+    endGame: (
+      { deck, id, startTime, score, currentCard, pastGames },
+      userId
+    ) => {
+      console.log({ score, currentCard });
+      return {
+        ...initial,
+        pastGames: pastGames.concat({
+          id,
+          user: userId,
+          startTime,
+          endTime: getDate,
+          score: score + currentCard.score,
+          cardsRemaining: deck.length
+        })
+      };
+    },
+    dealCard: ({ score, currentCard, deck, ...rest }) => ({
+      ...rest,
+      lastCard: currentCard,
+      currentCard: deck[0],
+      score: add(score)(currentCard.score),
+      deck: deck.slice(1)
     })
   }
 });
