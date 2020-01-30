@@ -5,7 +5,7 @@ import withCards from './withCards';
 import { setUserId } from '../../Features/Auth/reducer';
 export default Component =>
   compose(
-    connect(undefined, {
+    connect(null, {
       onSetUserId: setUserId
     })
     //withCards

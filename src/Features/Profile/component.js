@@ -17,7 +17,7 @@ const Profile = ({ accounts, web3Api }) => {
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [accounts]);
+  }, []);
 
   console.log('balane', balance);
   return (
