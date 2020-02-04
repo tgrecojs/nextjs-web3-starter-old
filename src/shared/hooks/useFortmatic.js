@@ -1,8 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
-import Web3 from 'web3';
+import { useState, useRef, useEffect } from 'react';
 import Fortmatic from 'fortmatic';
-import { setUserId } from '../../Features/Auth/reducer';
-import { getTestnet } from '../utils/web3';
+import Web3 from 'web3';
+
 const usePromise = () => {
   const ref = [];
   const container = useRef(ref);
@@ -13,54 +12,24 @@ const usePromise = () => {
   return container.current;
 };
 
-const testNets = {
-  rink: 'rinkeby',
-  rop: 'ropsten',
-  kov: 'koven'
-};
-
-const useFortmatic = apiKey => {
-  const [accounts, setAccounts] = useState([]);
-  const [web3Ready, setWeb3Ready] = usePromise();
-  const [web3IsInitialized, setWeb3IsInitialized] = useState(false);
+const useFortmaticWallet = () => {
+  const [accounts, setAccounts] = useState(null);
+  const [web3Ref, setWeb3Ref] = usePromise();
+  const [web3RefInitialized, setWeb3RefInitialized] = useState(false);
 
   const signIn = async () => {
-    const { web3 } = await web3Ready;
-    // Get the current user account addresses.
-    // Auth if needed.
-    // signIn returns a promise that should wait for signIn
-    // to complete before it resolves.
-    await web3.eth.getAccounts().then(setAccounts);
-  };
-  const signOut = async () => {
-    const { fm } = await web3Ready;
-    // signOut returns a promise that will wait
-    // until signout is complete to resolve.
-    await fm.user.logout();
-    setAccounts([]);
+    const { web3 } = await web3Ref;
+    web3.eth
+      .getAccounts()
+      .then(currentAccounts => {
+        if (currentAccounts[0] !== accounts[0]) setAccounts(currentAccounts);
+      })
+      .catch(err => {
+        console.log('Error::', err);
+        setAccounts([]);
+      });
   };
 
-  // Fire only once after components mounts.
-  useEffect(() => {
-    const initializeWeb3 = async () => {
-      const fm = new Fortmatic(apiKey);
-      const web3 = new Web3(fm.getProvider(), getTestnet());
-      // This needs to run before we update state
-      // if we want to enable users to stay signed
-      // in between page reloads.
-      (await fm.user.isLoggedIn()) && signIn();
-      setWeb3Ready({ fm, web3 });
-      setWeb3IsInitialized(true);
-    };
-    initializeWeb3();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  return {
-    accounts,
-    signOut,
-    signIn,
-    web3Ready,
-    web3IsInitialized
-  };
+  const fm = new Fortmatic('pk_test_FD0EB9F0796F08AF');
+  const web3 = new Web3(fm.getProvider());
 };
-export default useFortmatic;
