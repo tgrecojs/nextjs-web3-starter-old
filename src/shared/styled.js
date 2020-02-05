@@ -13,10 +13,10 @@ const Button = styled.button`
  */
 
 const Layout = styled.div`
-  ${tw`h-screen bg-teal-200 m-0`}
+  ${tw`h-screen bg-teal-200`}
 `;
 const CardStyle = css`
-  ${tw`w-1/2 flex flex-col shadow-xl bg-purple-300 rounded-lg mx-10 my-10 p-6`}
+  ${tw`flex flex-col shadow-xl bg-purple-300 rounded-lg m-2 p-6`}
 `;
 
 const Card = styled.div`

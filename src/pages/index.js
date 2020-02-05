@@ -1,3 +1,3 @@
-import Wallet from '../Features/Wallet/component';
+import Home from '../Features/Home/component';
 
-export default Wallet;
+export default Home;
