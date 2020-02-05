@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Card, Header, Button } from '../../shared/styled';
+import React, { useEffect } from 'react';
+import { Card, Header } from '../../shared/styled';
 import Fortmatic from 'fortmatic';
 import Web3 from 'web3';
 
