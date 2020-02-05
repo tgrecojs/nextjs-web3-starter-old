@@ -6,6 +6,9 @@ const Wrapper = ({ children }) => {
     <Layout className="wrapper">
       <Global
         styles={css`
+          body {
+            margin: 0;
+          }
           .wrapper {
             display: flex;
             min-height: 100vh;
