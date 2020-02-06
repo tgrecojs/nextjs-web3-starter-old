@@ -20,10 +20,37 @@ const CardStyle = css`
 `;
 
 const Card = styled.div`
-  ${tw`font-mono text-left h-12`}
+  ${tw`font-mono text-left h-1/2 `}
   ${CardStyle}
 `;
 
+const formStyles = css`
+  ${tw`rounded-lg text-black text-lg flex flex-col justify-around font-mono
+  border-purple-300 bg-blue-500 p-6 m-2 `}
+`;
+const Form = styled.form`
+  ${formStyles}
+  border: 1.5px solid;
+  div {
+    margin: 2px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px;
+  }
+  label {
+    max-width: 40%
+  }
+
+  input {
+    min-width: 70%
+    margin-top: 5px;
+    font-size: 16px;
+    border-radius: 3px;
+    padding: 5px;
+  }
+`;
 /**
  * We can use macros in `styled`.
  */
@@ -31,4 +58,4 @@ const Header = styled.div`
   ${tw`font-mono text-lg text-gray-800 hover:text-red-500`}
 `;
 
-export { Button, Card, CardStyle, Header, Layout };
+export { Button, Card, CardStyle, Header, Layout, Form };
