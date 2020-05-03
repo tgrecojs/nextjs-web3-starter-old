@@ -23,32 +23,32 @@ const Home = () => {
     <>
       <h2>Deck of Cards Pushups</h2>
       {/* <DeckOfCards currentDeck={currentDeck} /> */}
-      {data.length < 1 ? (
+      {data.length === 0 ? (
         <>
-          <h1>Nice Job! You did {score} pushups! </h1>
+          <h2>Final Card!</h2>
+          <Card {...currentCard} score={score} />
           <BtnDefault onClick={() => dispatch(endGame(userId[0]))}>
             Click to Record Results
           </BtnDefault>
         </>
       ) : (
-        <StyledDiv>
-          <Scoreboard score={score} player={userId[0]} />
-          {currentCard && (
-            <>
-              <Card {...currentCard} score={score} />
-              <BtnDefault
-                disabled={data.length < 1 ? true : false}
-                onClick={() => dispatch(dealCard(currentCard))}
-              >
-                Deal
+          <StyledDiv>
+            <Scoreboard score={score} player={userId[0]} />
+            {currentCard && (
+              <>
+                <Card {...currentCard} score={score} />
+                <BtnDefault
+                  onClick={() => dispatch(dealCard(currentCard))}
+                >
+                  Deal
               </BtnDefault>
-              <BtnDefault onClick={() => dispatch(endGame(userId[0]))}>
-                End Game
+                <BtnDefault onClick={() => dispatch(endGame(userId[0]))}>
+                  End Game
               </BtnDefault>
-            </>
-          )}
-        </StyledDiv>
-      )}
+              </>
+            )}
+          </StyledDiv>
+        )}
       {!isStarted && (
         <BtnDefault onClick={() => dispatch(shuffleCards())}>
           Start Game

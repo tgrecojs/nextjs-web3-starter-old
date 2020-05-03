@@ -19,7 +19,7 @@ const generateBgColors = (type = '') => {
 };
 const StyledPlayingCard = styled.div`
   ${tw`max-w-sm rounded overflow-hidden shadow-lg
-  px-6 py-4 bg-purple-300 text-center`}
+  px-6 py-4 bg-purple-300 text-center h-64`}
 `;
 
 const PlayingCard = ({
