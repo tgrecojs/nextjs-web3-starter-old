@@ -14,11 +14,16 @@ class MyApp extends App {
             href="https://fonts.googleapis.com/css?family=Cabin|Noto+Sans+KR&display=swap"
             rel="stylesheet"
           />
-          <style jsx>
+          <style jsx global>
             {`
               @font-face {
                 font-family: 'NSK';
                 src: 'Noto Sans KR';
+              }
+
+              body {
+                margin: 0;
+                background-color: cornflowerblue;
               }
 
               body,
