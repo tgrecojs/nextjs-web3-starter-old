@@ -1,39 +1,29 @@
 import App from 'next/app';
 import React from 'react';
-import withReduxStore from '../../lib/with-redux-store';
 import Head from 'next/head';
-import { Provider } from 'react-redux';
 
 class MyApp extends App {
   render() {
-    const { Component, pageProps, reduxStore } = this.props;
+    const { Component, pageProps } = this.props;
     return (
       <>
         <Head>
-          <link
+          {/* <link
             href="https://fonts.googleapis.com/css?family=Cabin|Noto+Sans+KR&display=swap"
             rel="stylesheet"
-          />
-          <style jsx>
+          /> */}
+          <style jsx global>
             {`
-              @font-face {
-                font-family: 'NSK';
-                src: 'Noto Sans KR';
-              }
-
-              body,
-              * {
-                font-family: 'NSK';
+              body {
+                margin: 0;
               }
             `}
           </style>
         </Head>
-        <Provider store={reduxStore}>
-          <Component {...pageProps} />
-        </Provider>
+        <Component {...pageProps} />
       </>
     );
   }
 }
 
-export default withReduxStore(MyApp);
+export default MyApp;
