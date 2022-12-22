@@ -16,7 +16,7 @@
     "fortmatic": "^1.1.3",
     "immutable": "^4.0.0-rc.12",
     "immutable-ext": "^1.1.5",
-    "next": ">=9.3.2",
+    "next": ">=13.1.0",
     "react": "16.10.1",
     "react-dom": "16.10.1",
     "react-redux": "^7.1.3",
